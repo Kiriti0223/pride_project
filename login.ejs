@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Register</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        overflow-x: hidden;
+        margin: 0;
+        scroll-behavior: smooth;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgb(155, 155, 155);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(110, 110, 110);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: relative;
+        background: rgb(246, 247, 251);
+      }
+      .header {
+        height: 40px;
+        width: 100%;
+        padding: 14px 0;
+        display: flex;
+        align-items: center;
+        border-bottom: 0.5mm solid rgba(0, 0, 0, 0.174);
+        position: sticky;
+        top: 0;
+        left: 0;
+        justify-content: space-between;
+        background: white;
+      }
+      .middle-abs {
+        position: absolute;
+        width: 100%;
+      }
+      .middle {
+        margin: auto;
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        border-radius: 50%;
+        text-align: center;
+        font-family: "Plus Jakarta Sans";
+        font-size: xx-large;
+      }
+      .middle span {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        background: rgb(20, 121, 203);
+        border-radius: 50%;
+        font-size: 20px;
+        color: white;
+      }
+      .left {
+        float: left;
+      }
+      .left span,
+      .right span {
+        display: block;
+        font-size: 40px;
+        color: rgb(117, 124, 138);
+        margin: 0 10px;
+      }
+      .main {
+        width: 100%;
+      }
+      .content {
+        margin: auto;
+        width: 90%;
+      }
+      .buttons {
+        width: 100%;
+        margin: 60px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .buttons .btn {
+        width: 120px;
+        font-family: poppins;
+        background: rgb(255, 255, 255);
+        color: rgb(20, 121, 203);
+        border: 0.5mm solid rgb(20, 121, 203);
+        outline: none;
+        cursor: pointer;
+        padding: 5px 15px;
+        font-size: large;
+        font-weight: 500;
+        border-radius: 6mm;
+      }
+      .btn:hover {
+        background: rgb(210, 235, 255);
+      }
+      .buttons .active {
+        background: rgb(20, 121, 203);
+        color: white;
+      }
+      .inputf {
+        display: block;
+        width: 90%;
+        margin: auto;
+      }
+      .login,
+      .register {
+        width: 100%;
+      }
+      form {
+        width: 90%;
+        margin: auto;
+        background: white;
+        padding: 40px 0;
+        border: 1.2mm solid rgb(234, 234, 234);
+        border-radius: 2mm;
+      }
+      .inputarea {
+        width: 85%;
+        height: 35px;
+        margin: auto;
+        display: block;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 0.5mm solid rgb(4, 47, 16);
+        background: rgb(246, 247, 251);
+        outline: none;
+        padding: 0 10px;
+        font-family: poppins;
+        font-size: medium;
+      }
+      form label {
+        width: 85.5%;
+        margin: auto;
+        text-align: left;
+        display: block;
+        font-size: medium;
+        font-family: poppins;
+        margin-top: 25px;
+        margin-bottom: 3px;
+        font-weight: 600;
+      }
+      .title {
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        font-family: "Plus Jakarta Sans";
+        font-weight: 300;
+        color: rgb(53, 53, 53);
+        font-size: xx-large;
+        margin-bottom: 20px;
+      }
+      .sub-btn {
+        width: 86%;
+        margin: auto;
+        background: rgb(20, 121, 203);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: poppins;
+        font-weight: 500;
+        border: none;
+        outline: none;
+        padding: 4px 0;
+        border-radius: 2mm;
+        font-size: large;
+      }
+      .sub-btn:hover {
+        background: rgb(9, 98, 171);
+      }
+      .register {
+        display: none;
+      }
+      .popup {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.189);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+      }
+      .box {
+        width: 350px;
+        padding: 15px;
+        background: white;
+        border-radius: 3mm;
+      }
+      .box-head {
+        font-size: xx-large;
+        font-family: poppins;
+        font-weight: 300;
+        color: rgb(88, 88, 88);
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .box-body {
+        width: 100%;
+        font-family: poppins;
+        font-size: medium;
+        margin: auto;
+        font-weight: 600;
+      }
+      .box-body span {
+        display: block;
+        font-size: 60px;
+        text-align: center;
+        color: rgb(72, 195, 118);
+        margin-bottom: 15px;
+      }
+      footer {
+        font-family: poppins;
+        width: 100%;
+        background: rgb(255, 255, 255);
+        padding: 20px 0;
+        margin-top: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .fleft {
+        min-width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 15px;
+      }
+      .ftitle {
+        display: flex;
+        align-items: center;
+        color: rgb(138, 138, 138);
+        font-weight: 400;
+        font-size: x-large;
+        letter-spacing: 1px;
+        margin-right: 10px;
+      }
+      .ftitle span {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+        line-height: 28px;
+        border-radius: 50%;
+        background: rgb(138, 138, 138);
+        color: white;
+        text-align: center;
+      }
+      .fleft a {
+        text-decoration: none;
+        font-size: medium;
+        color: rgb(173, 173, 173);
+      }
+      .fright {
+        margin: 0 15px;
+        font-size: medium;
+        color: rgb(138, 138, 138);
+      }
+      .inputf .question{
+        font-family: poppins;
+        font-size: medium;
+      }
+      .inputf input[type=radio]{
+        height: 15px;
+        width: 15px;
+      }
+      #radio{
+        width: 90%;
+      }
+      .radios{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .each-radio{
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+      }
+      @media only screen and (min-width: 600px) {
+        form {
+          width: 600px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="header">
+      <div class="left" style="display: None">
+        <span class="material-icons-round backBtn"> arrow_back </span>
+      </div>
+      <div class="middle-abs">
+        <div class="middle">
+          GYM MEMBERSHIP APPLICATION
+        </div>
+      </div>
+      <div class="right" style="display: None">
+        <span class="material-icons-round menuBtn"> menu </span>
+      </div>
+    </section>
+    <section class="main">
+      <% if (data) { %>
+      <div class="popup">
+        <div class="box">
+          <div class="box-head"><%=data.head %></div>
+          <div class="box-body">
+            <span class="material-icons-outlined" id="colorit">
+              <%=data.symbol %>
+            </span>
+            <%=data.message %>
+          </div>
+        </div>
+      </div>
+      <%}%>
+      <div class="content">
+        <div class="buttons">
+          <button type="button" class="btn active" id="b1">Login</button>
+          <button type="button" class="btn" id="b2">Register</button>
+        </div>
+        <div class="login" id="l1">
+          <form action="/login" method="post">
+            <div class="title">Login</div>
+            <span class="inputf">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="inputarea"
+                name="Email"
+                id="email"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <span class="inputf">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="inputarea"
+                name="Password"
+                id="password"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <button type="submit" class="sub-btn">
+              Login <span class="material-icons-round"> east </span>
+            </button>
+          </form>
+        </div>
+        <div class="register" id="l2">
+          <form action="/register" method="post" onsubmit="return conform()">
+            <div class="title">Register</div>
+            <span class="inputf">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="inputarea"
+                name="Email"
+                id="email"
+                required
+                placeholder="Ex: 19951A05Z0@iare.ac.in"
+                
+              />
+            </span>
+            <span class="inputf">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="inputarea"
+                name="Username"
+                id="name"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <span class="inputf">
+              <label for="PhoneNumber">Phone Number</label>
+              <input
+                type="number"
+                class="inputarea"
+                name="Phone"
+                id="PhoneNumber"
+                required
+                placeholder="Enter Here"
+                pattern="[0-9]{10}"
+              />
+            </span>
+            <span class="inputf">
+              <label for="Age">Age</label>
+              <input
+                type="number"
+                class="inputarea"
+                name="Age"
+                id="Age"
+                required
+                placeholder="Enter Here"
+                pattern="[0-9]{10}"
+              />
+            </span>
+            <span class="inputf" id="radio">
+              <div class="question">Previou Gym Experience</div>
+              <span class="radios">
+                <span class="each-radio">
+              <label for="Exyes">Yes</label>
+              <input
+                type="radio"
+                class="inputarea"
+                name="Experience"
+                id="Exyes"
+                value="yes"
+                required
+              />
+            </span>
+            <span class="each-radio">
+              <label for="Exno">No</label>
+              <input
+                type="radio"
+                class="inputarea"
+                name="Experience"
+                id="Expno"
+                value="no"
+                required
+              />
+            </span>
+            </span>
+            </span>
+            <span class="inputf">
+              <label for="Age">Address</label>
+              <input
+                type="text"
+                class="inputarea"
+                name="Address"
+                id="Address"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <span class="inputf">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="inputarea"
+                name="Password"
+                id="password2"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <span class="inputf">
+              <label for="cpassword">Conform Password</label>
+              <input
+                type="password"
+                class="inputarea"
+                name="CPassword"
+                id="cpassword"
+                required
+                placeholder="Enter Here"
+              />
+            </span>
+            <button type="submit" class="sub-btn">
+              Register <span class="material-icons-round"> east </span>
+            </button>
+          </form>
+        </div>
+        <a href="/login" style="display: none" id="clickit"></a>
+        <script>
+          var b1 = document.getElementById("b1");
+          var b2 = document.getElementById("b2");
+          var l1 = document.getElementById("l1");
+          var l2 = document.getElementById("l2");
+          f = 1;
+          b1.onclick = function () {
+            if (f == 0) {
+              l2.style.display = "none";
+              l1.style.display = "block";
+              f = 1;
+              b1.className = "btn active";
+              b2.className = "btn";
+            }
+          };
+          b2.onclick = function () {
+            if (f == 1) {
+              l1.style.display = "none";
+              l2.style.display = "block";
+              f = 0;
+              b1.className = "btn";
+              b2.className = "btn active";
+            }
+          };
+          function conform() {
+            var a = document.getElementById("cpassword").value;
+            var b = document.getElementById("password2").value;
+            if (a == b) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+          ("<% if (data) { %>");
+          document.querySelector(".popup").style.display = "flex";
+          setTimeout(() => {
+            document.querySelector(".popup").style.display = "none";
+            document.getElementById("clickit").click();
+          }, 4000);
+          ("<%}%>");
+        </script>
+      </div>
+    </section>
+    <footer>
+      <div class="fleft">
+        <div class="ftitle">
+          GYM
+        </div>
+        <a href="" target="_blank" rel="noopener noreferrer">Feedback</a>
+      </div>
+      <div class="fright">
+        <p>
+          Copyright ©
+          <script>
+            var CurrentYear = new Date().getFullYear();
+            document.write(CurrentYear);
+          </script>
+        </p>
+      </div>
+    </footer>
+    <script>
+      ("<% if(data) {%>");
+      document.getElementById("colorit").style.color = "<%=data.color%>";
+      ("<%}%>");
+    </script>
+  </body>
+</html>
